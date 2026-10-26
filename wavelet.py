@@ -13,13 +13,13 @@ def _logit_scalar(value: float) -> float:
     return math.log(value) - math.log1p(-value)
 
 
-class RobustMedianMADNorm(nn.Module): 
-    """Training-fold reference MAD with a bounded sample-scale correction.
+class RobustMedianMADNorm(nn.Module):
 
-    ``reference_scale`` is one global scalar computed from clean training
-    samples only.  It is stored in the checkpoint and is never conditioned on
-    speed or class.
-    """
+
+
+
+
+
 
     def __init__(
         self,
@@ -122,7 +122,7 @@ class RobustMedianMADNorm(nn.Module):
 
 
 class PerSampleZScoreNorm(nn.Module):
-    """Conventional per-sample z-score control used only by M-N0."""
+
 
     def __init__(self, eps: float = 1e-6) -> None:
         super().__init__()
@@ -152,7 +152,7 @@ class PerSampleZScoreNorm(nn.Module):
 
 
 class LearnableWaveletBranchV2(nn.Module):
-    """Frequency-ordered, zero-shift physical wavelets at a fixed sample rate."""
+
 
     def __init__(
         self,
@@ -255,7 +255,7 @@ class LearnableWaveletBranchV2(nn.Module):
 
 
 class EquivariantWaveletFrontEnd(nn.Module):
-    """Physical wavelets, one post-convolution node gain, and ON/OFF pooling."""
+
 
     def __init__(
         self,
@@ -312,8 +312,8 @@ class EquivariantWaveletFrontEnd(nn.Module):
             cycles_max=cycles_max,
             cycles_init=cycles_init,
         )
-        # Keep historical attribute/state-dict names so existing Full checkpoints
-        # remain loadable; in morphology controls these are three capacity-matched slots.
+
+
         self.laplace = LearnableWaveletBranchV2(branch_types[0], **branch_kwargs)
         self.mexh = LearnableWaveletBranchV2(branch_types[1], **branch_kwargs)
         self.morlet = LearnableWaveletBranchV2(branch_types[2], **branch_kwargs)
